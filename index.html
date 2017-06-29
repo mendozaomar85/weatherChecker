@@ -12,7 +12,7 @@
                     $("#temperature").html("");
                     var city = $(":input").val();
                     console.log(city);
-                    $.get("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=28e9cb7b986be615dd8d5e426084fc4e", function(data) {
+                    $.get("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=28e9cb7b986be615dd8d5e426084fc4e", function(data) {
                         console.log(data);
                         var city = data.name;
                         var cityWeather = data.main.temp;
