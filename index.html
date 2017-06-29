@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Check the Weather</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("form").on("submit", function(e){
+                    e.preventDefault();
+                    $("#city").html("");
+                    $("#temperature").html("");
+                    var city = $(":input").val();
+                    console.log(city);
+                    $.get("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=28e9cb7b986be615dd8d5e426084fc4e", function(data) {
+                        console.log(data);
+                        var city = data.name;
+                        var cityWeather = data.main.temp;
+                        cityWeather = Math.floor(((cityWeather - 273) * 9)/5 + 32);
+                            console.log(cityWeather);
+                        $("#city").append(city);
+                        $("#temperature").append("<h3>The Weather in " + city + " is currently</h3> " + cityWeather + "&#8457;")
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Weather</h1>
+        <form>
+            <input style="width: 200px;"type="text" placeholder="What is the weather like in?">
+            <button type="submit">Search Weather</button>
+        </form>
+        <div id="weather">
+            <h2 id="city"></h2>
+            <div id="temperature"></div>
+            
+        </div>
+        
+    </body>
+</html>
